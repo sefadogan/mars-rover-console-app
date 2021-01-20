@@ -1,2 +1,5 @@
 # mars-rover-console-app
-Mars Rover Console App
+Hi, It's a basic Mars Rover console app!
+
+### Result
+![](result-img.PNG)
