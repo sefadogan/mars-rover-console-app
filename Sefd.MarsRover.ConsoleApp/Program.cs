@@ -3,6 +3,7 @@ using Sefd.MarsRover.Common.Abstracts;
 using Sefd.MarsRover.Common.Consts.Enums;
 using Sefd.MarsRover.Common.DependencyInjection.MicrosoftExtension;
 using Sefd.MarsRover.Common.Helpers;
+using Sefd.MarsRover.Common.Validators;
 using System;
 using System.Collections.Generic;
 
@@ -22,8 +23,7 @@ namespace Sefd.MarsRover.ConsoleApp
             #endregion 
 
             #region Get plateau cordinates
-            Console.Write("Please input plateau coordinates: ");
-            var inputPlateauCordinates = Console.ReadLine();
+            var inputPlateauCordinates = AskPlateauCoordinatesToUser();
 
             var splittedCoordinates = PlateauHelper.SplitPlateauCoordinates(inputPlateauCordinates);
 
@@ -90,6 +90,24 @@ namespace Sefd.MarsRover.ConsoleApp
 
             // If user texts Y/y, while loop will be re-run to get rover's position, direction and commands.
             anotherRoverDecision = inputAnotherRoverDecision.ToUpper().Equals("Y");
+        }
+        private static string AskPlateauCoordinatesToUser()
+        {
+            var inputPlateauCordinates = "";
+            bool isInputValid = false;
+            while (!isInputValid)
+            {
+                Console.Write("Please input plateau coordinates: ");
+                inputPlateauCordinates = Console.ReadLine();
+
+                // Basic validation for plateau coordinates
+                isInputValid = UserInputValidator.Validate(inputPlateauCordinates);
+
+                if(!isInputValid)
+                    PutLine("The input is not valid! Try again.");
+            }
+
+            return inputPlateauCordinates;
         }
     }
 }
