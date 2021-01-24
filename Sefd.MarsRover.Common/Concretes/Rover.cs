@@ -52,7 +52,7 @@ namespace Sefd.MarsRover.Common.Abstracts
         }
         public void CheckConditionsToMove()
         {
-            if ((Position.X > Plateau.X || Position.X < 0) || 
+            if ((Position.X > Plateau.X || Position.X < 0) ||
                 (Position.Y > Plateau.Y || Position.Y < 0))
             {
                 throw new Exception("Rover cannot move! Trying to go out of the plateau.");
@@ -62,7 +62,7 @@ namespace Sefd.MarsRover.Common.Abstracts
         {
             return parenthesis
                 ? $"{Position.X} {Position.Y}"
-                :$"({Position.X}, {Position.Y})";
+                : $"({Position.X}, {Position.Y})";
         }
         #endregion
     }
